@@ -8,7 +8,7 @@
 import Foundation
 
 struct SetGameModel {
-    private var cards: [Card]
+    var cards: [Card]
     
     init(numberOfCardsDealed: Int) {
         cards = []
@@ -25,7 +25,7 @@ struct SetGameModel {
         }
         cards.shuffle()
         for i in 0..<numberOfCardsDealed {
-            cards[i].isInsideDeck = false
+            cards[i].isDealt = true
         }
     }
     
@@ -37,7 +37,7 @@ struct SetGameModel {
         
         var isMatched: Bool = false
         var isSelected: Bool = false
-        var isInsideDeck: Bool = true
+        var isDealt: Bool = false
         
         var id: Int
         

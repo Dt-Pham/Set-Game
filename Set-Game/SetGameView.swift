@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SetGameView: View {
+    @ObservedObject var viewModel: SetGameViewModel
+    
     var body: some View {
         Text("Hello, world!")
             .padding()
@@ -16,6 +18,6 @@ struct SetGameView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        SetGameView()
+        SetGameView(viewModel: SetGameViewModel())
     }
 }
