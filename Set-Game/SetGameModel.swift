@@ -10,7 +10,7 @@ import Foundation
 struct SetGameModel {
     private var cards: [Card]
     
-    init() {
+    init(numberOfCardsDealed: Int) {
         cards = []
         var id = 0
         for numberOfShapes in 1...3 {
@@ -22,6 +22,10 @@ struct SetGameModel {
                     }
                 }
             }
+        }
+        cards.shuffle()
+        for i in 0..<numberOfCardsDealed {
+            cards[i].isInsideDeck = false
         }
     }
     
