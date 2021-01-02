@@ -24,6 +24,6 @@ class SetGameViewModel: ObservableObject {
     }
     
     func dealCards() {
-        
+        model.dealCards()
     }
 }

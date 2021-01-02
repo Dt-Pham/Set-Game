@@ -9,6 +9,7 @@ import Foundation
 
 struct SetGameModel {
     var cards: [Card]
+    var indicesOfSelectedCards: [Int]
     
     init(numberOfCardsDealed: Int) {
         cards = []
@@ -27,6 +28,66 @@ struct SetGameModel {
         for i in 0..<numberOfCardsDealed {
             cards[i].isDealt = true
         }
+        indicesOfSelectedCards = []
+    }
+    
+    // MARK: - Intents
+    mutating func select(card: Card) {
+        assert(!card.isSelected && card.isDealt && !card.isMatched)
+        
+        let index = cards.firstIndex(matching: card)!
+        cards[index].isSelected = true
+        indicesOfSelectedCards.append(index)
+        
+        if checkCardsAreMatched() {
+            print("Cards are matched")
+        }
+        else {
+            print("Cards aren't matched")
+        }
+    }
+    
+    mutating func deselect(card: Card) {
+        if indicesOfSelectedCards.count < 3 {
+            assert(card.isSelected && card.isDealt && !card.isMatched)
+            
+            let index = cards.firstIndex(matching: card)!
+            cards[index].isSelected = false
+            indicesOfSelectedCards = indicesOfSelectedCards.filter{$0 != index}
+        }
+    }
+    
+    mutating func dealCards(amount: Int = 3) {
+        let indicesOfCardsInDeck = cards.indices.filter{cards[$0].isDealt == false}.shuffled()
+        if indicesOfCardsInDeck.count < amount {
+            print("No more cards")
+            return
+        }
+        for i in 0..<amount {
+            let index = indicesOfCardsInDeck[i]
+            cards[index].isDealt = true
+        }
+    }
+    
+    private func checkCardsAreMatched() -> Bool {
+        assert(indicesOfSelectedCards.count == 3)
+        let card1 = cards[indicesOfSelectedCards[0]]
+        let card2 = cards[indicesOfSelectedCards[1]]
+        let card3 = cards[indicesOfSelectedCards[2]]
+        
+        if (card1.numberOfShapes + card2.numberOfShapes + card3.numberOfShapes) % 3 != 0 {
+            return false
+        }
+        if (card1.color.rawValue + card2.color.rawValue + card3.color.rawValue) % 3 != 0 {
+            return false
+        }
+        if (card1.shape.rawValue + card2.shape.rawValue + card3.shape.rawValue) % 3 != 0 {
+            return false
+        }
+        if (card1.shading.rawValue + card2.shading.rawValue + card3.shading.rawValue) % 3 != 0 {
+            return false
+        }
+        return true
     }
     
     struct Card : Identifiable {
@@ -43,21 +104,21 @@ struct SetGameModel {
         
     }
     
-    enum Color : CaseIterable {
-        case red
-        case green
-        case purple
+    enum Color : Int, CaseIterable {
+        case red = 0
+        case green = 1
+        case purple = 2
     }
     
-    enum Shape : CaseIterable {
-        case diamond
-        case squiggle
-        case oval
+    enum Shape : Int, CaseIterable {
+        case diamond = 0
+        case squiggle = 1
+        case oval = 2
     }
     
-    enum Shading : CaseIterable {
-        case solid
-        case striped
-        case open
+    enum Shading : Int, CaseIterable {
+        case solid = 0
+        case striped = 1
+        case open = 2
     }
 }
