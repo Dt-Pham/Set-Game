@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C6357A3625A10CFC00947156 /* Cardify.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6357A3525A10CFC00947156 /* Cardify.swift */; };
 		C650527B259FAD320026C67F /* SetGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C650527A259FAD320026C67F /* SetGameModel.swift */; };
 		C650527E259FB5680026C67F /* SetGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C650527D259FB5680026C67F /* SetGameViewModel.swift */; };
 		C684C419259FC4620026E4CA /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C684C418259FC4620026E4CA /* GridLayout.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C6357A3525A10CFC00947156 /* Cardify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cardify.swift; sourceTree = "<group>"; };
 		C650527A259FAD320026C67F /* SetGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGameModel.swift; sourceTree = "<group>"; };
 		C650527D259FB5680026C67F /* SetGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGameViewModel.swift; sourceTree = "<group>"; };
 		C684C418259FC4620026E4CA /* GridLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				C684C41B259FC4DE0026E4CA /* Grid.swift */,
 				C684C41E259FC5400026E4CA /* ArrayExtensions.swift */,
 				C6E9F772259FAB790067C14B /* SetGameView.swift */,
+				C6357A3525A10CFC00947156 /* Cardify.swift */,
 				C650527A259FAD320026C67F /* SetGameModel.swift */,
 				C650527D259FB5680026C67F /* SetGameViewModel.swift */,
 				C6E9F774259FAB790067C14B /* Assets.xcassets */,
@@ -155,6 +158,7 @@
 			files = (
 				C6E9F773259FAB790067C14B /* SetGameView.swift in Sources */,
 				C6E9F771259FAB790067C14B /* Set_GameApp.swift in Sources */,
+				C6357A3625A10CFC00947156 /* Cardify.swift in Sources */,
 				C684C419259FC4620026E4CA /* GridLayout.swift in Sources */,
 				C650527B259FAD320026C67F /* SetGameModel.swift in Sources */,
 				C684C41F259FC5400026E4CA /* ArrayExtensions.swift in Sources */,

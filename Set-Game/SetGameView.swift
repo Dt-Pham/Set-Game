@@ -11,8 +11,24 @@ struct SetGameView: View {
     @ObservedObject var viewModel: SetGameViewModel
     
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        Button("New Game") {
+            print("new game")
+            viewModel.newGame()
+        }
+        Grid(items: viewModel.cardsOnScreen) { card in
+            CardView(card: card)
+                .padding(paddingLength)
+        }
+    }
+    
+    // MARK: - Drawing constants
+    let paddingLength: CGFloat = 5
+}
+
+struct CardView: View {
+    var card: SetGameModel.Card
+    var body: some View {
+        Text("Card").cardify(isFaceUp: true)
     }
 }
 

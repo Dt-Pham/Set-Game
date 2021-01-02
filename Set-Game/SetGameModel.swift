@@ -101,7 +101,6 @@ struct SetGameModel {
         var isDealt: Bool = false
         
         var id: Int
-        
     }
     
     enum Color : Int, CaseIterable {
