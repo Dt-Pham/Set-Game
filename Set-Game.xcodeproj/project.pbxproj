@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C6357A3625A10CFC00947156 /* Cardify.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6357A3525A10CFC00947156 /* Cardify.swift */; };
 		C6357A4525A1343000947156 /* Diamond.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6357A4425A1343000947156 /* Diamond.swift */; };
+		C6357A4825A1440A00947156 /* Squiggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6357A4725A1440A00947156 /* Squiggle.swift */; };
 		C650527B259FAD320026C67F /* SetGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C650527A259FAD320026C67F /* SetGameModel.swift */; };
 		C650527E259FB5680026C67F /* SetGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C650527D259FB5680026C67F /* SetGameViewModel.swift */; };
 		C684C419259FC4620026E4CA /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C684C418259FC4620026E4CA /* GridLayout.swift */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		C6357A3525A10CFC00947156 /* Cardify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cardify.swift; sourceTree = "<group>"; };
 		C6357A4425A1343000947156 /* Diamond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diamond.swift; sourceTree = "<group>"; };
+		C6357A4725A1440A00947156 /* Squiggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Squiggle.swift; sourceTree = "<group>"; };
 		C650527A259FAD320026C67F /* SetGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGameModel.swift; sourceTree = "<group>"; };
 		C650527D259FB5680026C67F /* SetGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGameViewModel.swift; sourceTree = "<group>"; };
 		C684C418259FC4620026E4CA /* GridLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
@@ -51,6 +53,7 @@
 			isa = PBXGroup;
 			children = (
 				C6357A4425A1343000947156 /* Diamond.swift */,
+				C6357A4725A1440A00947156 /* Squiggle.swift */,
 			);
 			path = Shapes;
 			sourceTree = "<group>";
@@ -167,6 +170,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6357A4825A1440A00947156 /* Squiggle.swift in Sources */,
 				C6E9F773259FAB790067C14B /* SetGameView.swift in Sources */,
 				C6E9F771259FAB790067C14B /* Set_GameApp.swift in Sources */,
 				C6357A3625A10CFC00947156 /* Cardify.swift in Sources */,

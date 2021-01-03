@@ -93,7 +93,7 @@ struct SetGameModel {
     struct Card : Identifiable {
         var numberOfShapes: Int
         var color: Color
-        var shape: Shape
+        var shape: Shape	
         var shading: Shading
         
         var isMatched: Bool = false
