@@ -28,7 +28,8 @@ struct SetGameView: View {
 struct CardView: View {
     var card: SetGameModel.Card
     var body: some View {
-        Text("Card").cardify(isFaceUp: true)
+        Diamond(ratio: 3/2).cardify(isFaceUp: true)
+            .foregroundColor(.red)
     }
 }
 
