@@ -28,7 +28,7 @@ struct SetGameView: View {
 struct CardView: View {
     var card: SetGameModel.Card
     var body: some View {
-        Squiggle().stroke(lineWidth: 2)
+        Squiggle().stripe().stroke(lineWidth: 2)
             .aspectRatio(16/9, contentMode: .fit)
             .padding()
             .cardify(isFaceUp: true)
