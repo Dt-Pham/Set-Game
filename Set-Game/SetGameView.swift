@@ -28,12 +28,20 @@ struct SetGameView: View {
 struct CardView: View {
     var card: SetGameModel.Card
     var body: some View {
-        Squiggle().stripe().stroke(lineWidth: 2)
+        Group {
+            switch card.symbol {
+            case .diamond:
+                Diamond().stripe().stroke(lineWidth: 2)
+            case .squiggle:
+                Squiggle().stripe().stroke(lineWidth: 2)
+            case .oval:
+                RoundedRectangle(cornerRadius:10).stripe().stroke(lineWidth: 2)
+            }
+        }
             .aspectRatio(16/9, contentMode: .fit)
             .padding()
             .cardify(isFaceUp: true)
             .foregroundColor(.red)
-        RoundedRectangle(cornerRadius: 10).stroke()
     }
     
 }

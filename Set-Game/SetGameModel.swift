@@ -16,9 +16,9 @@ struct SetGameModel {
         var id = 0
         for numberOfShapes in 1...3 {
             for color in Color.allCases {
-                for shape in Shape.allCases {
+                for symbol in Symbol.allCases {
                     for shading in Shading.allCases {
-                        cards.append(Card(numberOfShapes: numberOfShapes, color: color, shape: shape, shading: shading, id: id))
+                        cards.append(Card(numberOfShapes: numberOfShapes, color: color, symbol: symbol, shading: shading, id: id))
                         id += 1
                     }
                 }
@@ -81,7 +81,7 @@ struct SetGameModel {
         if (card1.color.rawValue + card2.color.rawValue + card3.color.rawValue) % 3 != 0 {
             return false
         }
-        if (card1.shape.rawValue + card2.shape.rawValue + card3.shape.rawValue) % 3 != 0 {
+        if (card1.symbol.rawValue + card2.symbol.rawValue + card3.symbol.rawValue) % 3 != 0 {
             return false
         }
         if (card1.shading.rawValue + card2.shading.rawValue + card3.shading.rawValue) % 3 != 0 {
@@ -93,7 +93,7 @@ struct SetGameModel {
     struct Card : Identifiable {
         var numberOfShapes: Int
         var color: Color
-        var shape: Shape	
+        var symbol: Symbol
         var shading: Shading
         
         var isMatched: Bool = false
@@ -109,7 +109,7 @@ struct SetGameModel {
         case purple = 2
     }
     
-    enum Shape : Int, CaseIterable {
+    enum Symbol : Int, CaseIterable {
         case diamond = 0
         case squiggle = 1
         case oval = 2
