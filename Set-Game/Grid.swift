@@ -9,16 +9,18 @@ import SwiftUI
 
 struct Grid<Item, ItemView>: View where Item: Identifiable, ItemView: View {
     private var items = [Item]()
+    private var nearAspectRatio: Double
     private var viewForItem: (Item) -> ItemView
     
-    init(items: [Item], viewForItem: @escaping (Item) -> ItemView) {
+    init(items: [Item], nearAspectRatio: Double, viewForItem: @escaping (Item) -> ItemView) {
         self.items = items
+        self.nearAspectRatio = nearAspectRatio
         self.viewForItem = viewForItem
     }
     
     var body: some View {
         GeometryReader { geometry in
-            let layout = GridLayout(itemCount: items.count, in: geometry.size)
+            let layout = GridLayout(itemCount: items.count, nearAspectRatio: nearAspectRatio, in: geometry.size)
             ForEach(items) { item in
                 viewForItem(item)
                     .frame(width: layout.itemSize.width, height: layout.itemSize.height)

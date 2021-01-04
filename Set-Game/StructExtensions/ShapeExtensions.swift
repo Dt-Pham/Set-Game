@@ -8,5 +8,7 @@
 import SwiftUI
 
 extension Shape {
-    
+    func stripe(n: Int = 10) -> some Shape {
+        return StripedShape(pathGenerator: self.path)
+    }
 }
