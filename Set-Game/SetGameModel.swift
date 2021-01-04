@@ -34,16 +34,27 @@ struct SetGameModel {
     // MARK: - Intents
     mutating func select(card: Card) {
         assert(!card.isSelected && card.isDealt && !card.isMatched)
+        print("select card: \(card)")
         
         let index = cards.firstIndex(matching: card)!
         cards[index].isSelected = true
         indicesOfSelectedCards.append(index)
         
-        if checkCardsAreMatched() {
-            print("Cards are matched")
-        }
-        else {
-            print("Cards aren't matched")
+        if indicesOfSelectedCards.count == 3 {
+            if checkCardsAreMatched() {
+                print("Cards are matched")
+                removeMatchedCards()
+                indicesOfSelectedCards.removeAll()
+                dealCards()
+            }
+            else {
+                print("Cards aren't matched")
+                for i in 0..<3 {
+                    let index = indicesOfSelectedCards[i]
+                    cards[index].isSelected = false
+                }
+                indicesOfSelectedCards.removeAll()
+            }
         }
     }
     
@@ -51,6 +62,7 @@ struct SetGameModel {
         if indicesOfSelectedCards.count < 3 {
             assert(card.isSelected && card.isDealt && !card.isMatched)
             
+            print("deselect card: \(card)")
             let index = cards.firstIndex(matching: card)!
             cards[index].isSelected = false
             indicesOfSelectedCards = indicesOfSelectedCards.filter{$0 != index}
@@ -89,6 +101,15 @@ struct SetGameModel {
         }
         return true
     }
+    
+    private mutating func removeMatchedCards() {
+        assert(indicesOfSelectedCards.count == 3 && checkCardsAreMatched())
+        for i in 0..<3 {
+            let index = indicesOfSelectedCards[i]
+            cards[index].isMatched = true
+        }
+    }
+    
     
     struct Card : Identifiable {
         var numberOfShapes: Int

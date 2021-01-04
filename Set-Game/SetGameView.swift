@@ -20,8 +20,9 @@ struct SetGameView: View {
             viewModel.dealCards()
         }
         Grid(items: viewModel.cardsOnScreen, nearAspectRatio: 1/2) { card in
-            CardView(card: card)
-                .padding(paddingLength)
+            CardView(card: card).onTapGesture {
+                viewModel.chooseCard(card: card)
+            }
         }
     }
     

@@ -26,4 +26,13 @@ class SetGameViewModel: ObservableObject {
     func dealCards() {
         model.dealCards()
     }
+    
+    func chooseCard(card: SetGameModel.Card) {
+        if card.isSelected {
+            model.deselect(card: card)
+        }
+        else {
+            model.select(card: card)
+        }
+    }
 }
