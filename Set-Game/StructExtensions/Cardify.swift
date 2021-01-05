@@ -10,6 +10,7 @@ import SwiftUI
 struct Cardify: AnimatableModifier {
     var rotation: Double
     var thickness: CGFloat
+    var aspectRatio: CGFloat
     
     var isFaceUp: Bool {
         rotation < 90
@@ -24,9 +25,10 @@ struct Cardify: AnimatableModifier {
         }
     }
     
-    init(isFaceUp: Bool, isSelected: Bool) {
-        rotation = isFaceUp ? 0 : 180
-        thickness = isSelected ? 10 * lineWidth : lineWidth
+    init(isFaceUp: Bool, isSelected: Bool, aspectRatio: CGFloat) {
+        self.rotation = isFaceUp ? 0 : 180
+        self.thickness = isSelected ? 10 * lineWidth : lineWidth
+        self.aspectRatio = aspectRatio
     }
     
     func body(content: Content) -> some View {
@@ -40,6 +42,7 @@ struct Cardify: AnimatableModifier {
             RoundedRectangle(cornerRadius: cornerRadius).fill()
                 .opacity(isFaceUp ? 0 : 1)
         }
+        .aspectRatio(aspectRatio, contentMode: .fit)
         .rotation3DEffect(Angle.degrees(rotation), axis: yAxis)
     }
         
@@ -50,7 +53,7 @@ struct Cardify: AnimatableModifier {
 }
 
 extension View {
-    func cardify(isFaceUp: Bool, isSelected: Bool) -> some View {
-        modifier(Cardify(isFaceUp: isFaceUp, isSelected: isSelected))
+    func cardify(isFaceUp: Bool, isSelected: Bool, aspectRatio: CGFloat) -> some View {
+        modifier(Cardify(isFaceUp: isFaceUp, isSelected: isSelected, aspectRatio: aspectRatio))
     }
 }

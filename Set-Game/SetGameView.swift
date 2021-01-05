@@ -61,10 +61,10 @@ struct CardView: View {
             ForEach(0..<card.numberOfShapes) { index in
                 cardContent()
                     .aspectRatio(16/9, contentMode: .fit)
-                    .frame(width: size.width, height: size.height / 4)
+                    .frame(width: size.width, height: size.height / 5)
             }
         }
-        .cardify(isFaceUp: true, isSelected: card.isSelected)
+        .cardify(isFaceUp: true, isSelected: card.isSelected, aspectRatio: 1/2)
         .foregroundColor(color)
     }
     
