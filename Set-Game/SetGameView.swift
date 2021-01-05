@@ -11,19 +11,36 @@ struct SetGameView: View {
     @ObservedObject var viewModel: SetGameViewModel
     
     var body: some View {
-        Button("New Game") {
+        Button {
             print("new game")
             viewModel.newGame()
+        } label: {
+            Text("New Game")
+                .padding()
+                .background(Color.purple)
+                .foregroundColor(.white)
+                .font(.title)
+                .cornerRadius(40)
         }
-        Button("Deal 3 cards") {
-            print("deal 3 cards")
-            viewModel.dealCards()
-        }
+
         Grid(items: viewModel.cardsOnScreen, nearAspectRatio: 1/2) { card in
             CardView(card: card).onTapGesture {
-                viewModel.chooseCard(card: card)
+                withAnimation(Animation.linear(duration: 0.5)) {
+                    viewModel.chooseCard(card: card)
+                }
             }
         }
+        Button {
+            viewModel.dealCards()
+        } label: {
+            Text("Deal 3 cards")
+                .padding()
+                .background(Color.purple)
+                .foregroundColor(.white)
+                .font(.title)
+                .cornerRadius(40)
+        }
+
     }
     
     // MARK: - Drawing constants
@@ -47,7 +64,7 @@ struct CardView: View {
                     .frame(width: size.width, height: size.height / 4)
             }
         }
-        .cardify(isFaceUp: true)
+        .cardify(isFaceUp: true, isSelected: card.isSelected)
         .foregroundColor(color)
     }
     

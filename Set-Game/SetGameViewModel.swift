@@ -33,6 +33,7 @@ class SetGameViewModel: ObservableObject {
         }
         else {
             model.select(card: card)
+            model.check()
         }
     }
 }

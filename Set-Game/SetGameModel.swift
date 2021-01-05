@@ -39,7 +39,9 @@ struct SetGameModel {
         let index = cards.firstIndex(matching: card)!
         cards[index].isSelected = true
         indicesOfSelectedCards.append(index)
-        
+    }
+    
+    mutating func check() {
         if indicesOfSelectedCards.count == 3 {
             if checkCardsAreMatched() {
                 print("Cards are matched")

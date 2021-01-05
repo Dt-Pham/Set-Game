@@ -9,6 +9,8 @@ import SwiftUI
 
 struct Cardify: AnimatableModifier {
     var rotation: Double
+    var thickness: CGFloat
+    
     var isFaceUp: Bool {
         rotation < 90
     }
@@ -22,14 +24,15 @@ struct Cardify: AnimatableModifier {
         }
     }
     
-    init(isFaceUp: Bool) {
+    init(isFaceUp: Bool, isSelected: Bool) {
         rotation = isFaceUp ? 0 : 180
+        thickness = isSelected ? 10 * lineWidth : lineWidth
     }
     
     func body(content: Content) -> some View {
         ZStack {
             Group {
-                RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: lineWidth)
+                RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: thickness)
                 RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
                 content
             }
@@ -47,7 +50,7 @@ struct Cardify: AnimatableModifier {
 }
 
 extension View {
-    func cardify(isFaceUp: Bool) -> some View {
-        modifier(Cardify(isFaceUp: isFaceUp))
+    func cardify(isFaceUp: Bool, isSelected: Bool) -> some View {
+        modifier(Cardify(isFaceUp: isFaceUp, isSelected: isSelected))
     }
 }
