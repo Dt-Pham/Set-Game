@@ -11,36 +11,59 @@ struct SetGameView: View {
     @ObservedObject var viewModel: SetGameViewModel
     
     var body: some View {
-        Button {
-            print("new game")
-            viewModel.newGame()
-        } label: {
-            Text("New Game")
-                .padding()
-                .background(Color.purple)
-                .foregroundColor(.white)
-                .font(.title)
-                .cornerRadius(40)
+        GeometryReader { geometry in
+            body(size: geometry.size)
         }
-
-        Grid(items: viewModel.cardsOnScreen, nearAspectRatio: 1/2) { card in
-            CardView(card: card).onTapGesture {
-                withAnimation(Animation.linear(duration: 0.5)) {
-                    viewModel.chooseCard(card: card)
+    }
+    
+    private func body(size: CGSize) -> some View {
+        VStack {
+            // new game button
+            Button {
+                print("new game")
+                viewModel.newGame()
+            } label: {
+                Text("New Game")
+                    .padding()
+                    .background(Color.purple)
+                    .foregroundColor(.white)
+                    .font(.title)
+                    .cornerRadius(40)
+            }
+            .frame(width: size.width, height: size.height/20, alignment: Alignment.bottomLeading)
+//            .scaleEffect(0.5)
+            
+            // cards
+            Grid(items: viewModel.cardsOnScreen, nearAspectRatio: 1/2) { card in
+                CardView(card: card).onTapGesture {
+                    withAnimation(Animation.linear(duration: 0.5)) {
+                        viewModel.chooseCard(card: card)
+                    }
                 }
             }
+            
+            HStack {
+                // deal cards button
+                Group {
+                    Button {
+                        viewModel.dealCards()
+                    } label: {
+                        Text("Deal 3 cards")
+                            .padding()
+                            .background(Color.purple)
+                            .foregroundColor(.white)
+                            .font(.title)
+                            .cornerRadius(40)
+                    }
+                }
+                .frame(alignment: .bottomTrailing)
+                
+                // deck
+                Text("this is a deck").cardify(isFaceUp: true, isSelected: false, aspectRatio: 1/2)
+                    .frame(width: size.width / 2, height: size.height / 4, alignment: .topTrailing)
+            }
+            
         }
-        Button {
-            viewModel.dealCards()
-        } label: {
-            Text("Deal 3 cards")
-                .padding()
-                .background(Color.purple)
-                .foregroundColor(.white)
-                .font(.title)
-                .cornerRadius(40)
-        }
-
     }
     
     // MARK: - Drawing constants
@@ -53,7 +76,7 @@ struct CardView: View {
         GeometryReader { geometry in
             body(size: geometry.size)
         }
-        .padding()
+        .padding(5)
     }
     
     private func body(size: CGSize) -> some View {
@@ -61,7 +84,7 @@ struct CardView: View {
             ForEach(0..<card.numberOfShapes) { index in
                 cardContent()
                     .aspectRatio(16/9, contentMode: .fit)
-                    .frame(width: size.width, height: size.height / 5)
+                    .frame(width: size.width/1.2, height: size.height / 8)
             }
         }
         .cardify(isFaceUp: true, isSelected: card.isSelected, aspectRatio: 1/2)
