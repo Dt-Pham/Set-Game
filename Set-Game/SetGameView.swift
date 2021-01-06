@@ -88,6 +88,7 @@ struct CardView: View {
             }
         }
         .cardify(isFaceUp: true, isSelected: card.isSelected, aspectRatio: 1/2)
+        .shake(animatableData: CGFloat(card.isSelected ? 1 : 0))
         .foregroundColor(color)
     }
     

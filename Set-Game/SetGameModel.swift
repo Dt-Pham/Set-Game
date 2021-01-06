@@ -10,6 +10,7 @@ import Foundation
 struct SetGameModel {
     var cards: [Card]
     var indicesOfSelectedCards: [Int]
+    var indicesOfHintedCards: [Int]
     
     init(numberOfCardsDealed: Int) {
         cards = []
@@ -29,6 +30,7 @@ struct SetGameModel {
             cards[i].isDealt = true
         }
         indicesOfSelectedCards = []
+        indicesOfHintedCards = [0]
     }
     
     // MARK: - Intents
@@ -122,6 +124,7 @@ struct SetGameModel {
         var isMatched: Bool = false
         var isSelected: Bool = false
         var isDealt: Bool = false
+        var isHinted: Bool = false
         
         var id: Int
     }
