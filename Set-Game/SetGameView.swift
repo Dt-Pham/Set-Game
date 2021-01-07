@@ -21,7 +21,9 @@ struct SetGameView: View {
         DispatchQueue.main.async {
             if viewModel.numberOfSelectedCards == 3 {
                 Thread.sleep(forTimeInterval: 0.5)
-                viewModel.check()
+                withAnimation(Animation.linear(duration: 0.5)) {
+                    viewModel.check()
+                }
             }
         }
         
@@ -75,8 +77,9 @@ struct SetGameView: View {
 }
 
 struct CardView: View {
-    
+    var correctMatched: Bool?
     var card: SetGameModel.Card
+    
     var body: some View {
         GeometryReader { geometry in
             body(size: geometry.size)
