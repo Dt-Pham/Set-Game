@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct SetGameView: View {
     @ObservedObject var viewModel: SetGameViewModel
     
@@ -17,7 +18,14 @@ struct SetGameView: View {
     }
     
     private func body(size: CGSize) -> some View {
-        VStack {
+        DispatchQueue.main.async {
+            if viewModel.numberOfSelectedCards == 3 {
+                Thread.sleep(forTimeInterval: 0.5)
+                viewModel.check()
+            }
+        }
+        
+        return VStack {
             // new game button
             Button {
                 print("new game")
@@ -31,14 +39,11 @@ struct SetGameView: View {
                     .cornerRadius(40)
             }
             .frame(width: size.width, height: size.height/20, alignment: Alignment.bottomLeading)
-//            .scaleEffect(0.5)
             
             // cards
             Grid(items: viewModel.cardsOnScreen, nearAspectRatio: 1/2) { card in
                 CardView(card: card).onTapGesture {
-                    withAnimation(Animation.linear(duration: 0.5)) {
-                        viewModel.chooseCard(card: card)
-                    }
+                    viewModel.chooseCard(card: card)
                 }
             }
             
@@ -62,7 +67,6 @@ struct SetGameView: View {
                 Text("this is a deck").cardify(isFaceUp: true, isSelected: false, aspectRatio: 1/2)
                     .frame(width: size.width / 2, height: size.height / 4, alignment: .topTrailing)
             }
-            
         }
     }
     
@@ -71,6 +75,7 @@ struct SetGameView: View {
 }
 
 struct CardView: View {
+    
     var card: SetGameModel.Card
     var body: some View {
         GeometryReader { geometry in

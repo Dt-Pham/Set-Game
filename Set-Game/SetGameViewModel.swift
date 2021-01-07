@@ -18,6 +18,10 @@ class SetGameViewModel: ObservableObject {
         }
     }
     
+    var numberOfSelectedCards: Int {
+        model.indicesOfSelectedCards.count
+    }
+    
     // MARK: - Intents
     func newGame() {
         model = SetGameModel(numberOfCardsDealed: 12)
@@ -33,7 +37,11 @@ class SetGameViewModel: ObservableObject {
         }
         else {
             model.select(card: card)
-            model.check()
         }
+    }
+    
+    func check() {
+        print("View Model: check()")
+        model.check()
     }
 }

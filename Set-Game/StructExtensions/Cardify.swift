@@ -27,7 +27,7 @@ struct Cardify: AnimatableModifier {
     
     init(isFaceUp: Bool, isSelected: Bool, aspectRatio: CGFloat) {
         self.rotation = isFaceUp ? 0 : 180
-        self.thickness = isSelected ? 10 * lineWidth : lineWidth
+        self.thickness = isSelected ? 2 * lineWidth : lineWidth
         self.aspectRatio = aspectRatio
     }
     
