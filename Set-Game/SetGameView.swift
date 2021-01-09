@@ -31,7 +31,9 @@ struct SetGameView: View {
             // new game button
             Button {
                 print("new game")
-                viewModel.newGame()
+                withAnimation(.linear) {
+                    viewModel.newGame()
+                }
             } label: {
                 Text("New Game")
                     .padding()
@@ -53,7 +55,9 @@ struct SetGameView: View {
                 // deal cards button
                 Group {
                     Button {
-                        viewModel.dealCards()
+                        withAnimation(.linear) {
+                            viewModel.dealCards()
+                        }
                     } label: {
                         Text("Deal 3 cards")
                             .padding()
@@ -70,6 +74,7 @@ struct SetGameView: View {
                     .frame(width: size.width / 2, height: size.height / 4, alignment: .topTrailing)
             }
         }
+        
     }
     
     // MARK: - Drawing constants
@@ -88,7 +93,7 @@ struct CardView: View {
     }
     
     private func body(size: CGSize) -> some View {
-        VStack {
+        let cardView = VStack {
             ForEach(0..<card.numberOfShapes) { index in
                 cardContent()
                     .aspectRatio(16/9, contentMode: .fit)
@@ -96,8 +101,17 @@ struct CardView: View {
             }
         }
         .cardify(isFaceUp: true, isSelected: card.isSelected, aspectRatio: 1/2)
-        .shake(animatableData: CGFloat(card.isSelected ? 1 : 0))
         .foregroundColor(color)
+        .transition(.slide)
+        
+        return Group {
+            if correctMatched == nil || correctMatched! == true {
+                cardView.transition(.offset(x: 1000, y: 1000))
+            }
+            else {
+                cardView.shake(animatableData: CGFloat(card.isSelected ? 1 : 0))
+            }
+        }
     }
     
     func cardContent() -> some View {

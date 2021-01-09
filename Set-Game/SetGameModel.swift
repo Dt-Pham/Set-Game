@@ -36,7 +36,7 @@ struct SetGameModel {
     // MARK: - Intents
     mutating func select(card: Card) {
         assert(!card.isSelected && card.isDealt && !card.isMatched)
-        print("select card: \(card)")
+        print("selected card: \(card)")
         
         let index = cards.firstIndex(matching: card)!
         cards[index].isSelected = true
@@ -74,7 +74,12 @@ struct SetGameModel {
     }
     
     mutating func dealCards(amount: Int = 3) {
-        let indicesOfCardsInDeck = cards.indices.filter{cards[$0].isDealt == false}.shuffled()
+        var indicesOfCardsInDeck = [Int]()
+        for i in 0..<cards.count {
+            if !cards[i].isDealt && indicesOfCardsInDeck.count < amount {
+                indicesOfCardsInDeck.append(i)
+            }
+        }
         if indicesOfCardsInDeck.count < amount {
             print("No more cards")
             return

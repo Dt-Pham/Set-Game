@@ -8,7 +8,7 @@
 import Foundation
 
 class SetGameViewModel: ObservableObject {
-    @Published private var model: SetGameModel = SetGameModel(numberOfCardsDealed: 12);
+    @Published private var model: SetGameModel = SetGameModel(numberOfCardsDealed: 0);
     
     
     // MARK: - Access
